@@ -158,7 +158,7 @@ class TableBuilder:
         index_columns.append(table.c[tx_column_name].desc())
 
         # Create a unique index name based on table name
-        index_name = f'ix_{table.name}_pk_transaction_id'
+        index_name = self.option('index_name') % table.name
 
         indexes.append(sa.Index(index_name, *index_columns))
 
@@ -169,7 +169,7 @@ class TableBuilder:
             validity_index_columns.append(table.c[tx_column_name])
             validity_index_columns.append(table.c[end_tx_column_name])
 
-            validity_index_name = f'ix_{table.name}_pk_validity'
+            validity_index_name = self.option('validity_index_name') % table.name
             indexes.append(sa.Index(validity_index_name, *validity_index_columns))
 
         return indexes
