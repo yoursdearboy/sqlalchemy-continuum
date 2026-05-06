@@ -89,6 +89,8 @@ class VersioningManager:
             'strategy': 'validity',
             'use_module_name': False,
             'create_composite_index': True,
+            'index_name': 'ix_%s_pk_transaction_id',
+            'validity_index_name': 'ix_%s_pk_validity'
         }
         if plugins is None:
             self.plugins = []
